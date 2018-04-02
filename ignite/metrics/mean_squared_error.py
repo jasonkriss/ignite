@@ -20,7 +20,7 @@ class MeanSquaredError(Metric):
         y_pred, y = output
         squared_errors = torch.pow(y_pred - y.view_as(y_pred), 2)
         self._sum_of_squared_errors += torch.sum(squared_errors)
-        self._num_examples += y.shape[0]
+        self._num_examples += y.numel()
 
     def compute(self):
         if self._num_examples == 0:

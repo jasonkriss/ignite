@@ -23,3 +23,12 @@ def test_compute():
     y = torch.zeros(2)
     mae.update((y_pred, y))
     assert mae.compute() == 3.0
+
+
+def test_multioutput_compute():
+    mae = MeanAbsoluteError()
+
+    y_pred = torch.Tensor([[0, 2], [-1, 2], [8, -5]])
+    y = torch.Tensor([[0.5, 1], [-1, 1], [7, -6]])
+    mae.update((y_pred, y))
+    assert mae.compute() == 0.75

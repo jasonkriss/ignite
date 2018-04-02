@@ -20,7 +20,7 @@ class MeanAbsoluteError(Metric):
         y_pred, y = output
         absolute_errors = torch.abs(y_pred - y.view_as(y_pred))
         self._sum_of_absolute_errors += torch.sum(absolute_errors)
-        self._num_examples += y.shape[0]
+        self._num_examples += y.numel()
 
     def compute(self):
         if self._num_examples == 0:
